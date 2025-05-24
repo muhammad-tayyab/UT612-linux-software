@@ -69,14 +69,14 @@ enum MModeModifier {
 
 // Seems to be stored in byte 3
 enum FreqEnum {
-	FREQ_100HZ = 0x18, //24,
-	FREQ_120HZ = 0x38, //56,
-	FREQ_1KHZ = 0x58, //88,
-	FREQ_10KHZ = 0x78, //120,
-	FREQ_100KHZ = 0x98, //152,
+	FREQ_100HZ = 0x10, //24,
+	FREQ_120HZ = 0x30, //56,
+	FREQ_1KHZ = 0x50, //88,
+	FREQ_10KHZ = 0x70, //120,
+	FREQ_100KHZ = 0x90, //152,
 
 	// TODO: Verify that this really is DC resistance measurement. Possibly rename to FREQ_0HZ?
-	FREQ_DCR_MEASUREMENT = 0xB8
+	FREQ_DCR_MEASUREMENT = 0xB0
 };
 
 // Seems to be stored in byte 10
@@ -273,7 +273,7 @@ std::string UT612ByteStreamParser::sUnit2String(uint8_t sUnit) const
 
 std::string UT612ByteStreamParser::freq2String(uint8_t freq) const
 {
-	switch (freq & 0xF8) // Some times there is issue with data, it covers the issue without losing any data
+	switch (freq & 0xF0) // Some times there is issue with data, it covers the issue without losing any data
 	{
 	case FREQ_100HZ:
 		return "100Hz";
