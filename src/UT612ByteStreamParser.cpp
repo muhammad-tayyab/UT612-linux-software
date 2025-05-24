@@ -168,6 +168,9 @@ std::string UT612ByteStreamParser::mUnit2String(uint8_t mUnit) const
 	case 7:
 		return "H";
 		break;
+	case 8:
+		return "kH"; // in new versions of UT612 (probably)
+		break;
 
 
 	case 9:
@@ -270,7 +273,7 @@ std::string UT612ByteStreamParser::sUnit2String(uint8_t sUnit) const
 
 std::string UT612ByteStreamParser::freq2String(uint8_t freq) const
 {
-	switch (freq)
+	switch (freq & 0xF8) // Some times there is issue with data, it covers the issue without losing any data
 	{
 	case FREQ_100HZ:
 		return "100Hz";
